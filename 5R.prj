@@ -1,0 +1,175 @@
+<deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
+  <configuration file="/ph2users/fefuks/PhD/BACTERIA/MethodsPaper/5R Code/5R.prj" location="/ph2users/fefuks/PhD/BACTERIA/MethodsPaper/5R Code" name="5R" target="target.ezdeploy.standalone" target-name="Application Compiler">
+    <param.appname>main_5R</param.appname>
+    <param.icon />
+    <param.icons />
+    <param.version>1.0</param.version>
+    <param.authnamewatermark>Gari Fuks</param.authnamewatermark>
+    <param.email />
+    <param.company>Weizmann Institute of Science</param.company>
+    <param.summary>5R bacterial reconstruction software</param.summary>
+    <param.description />
+    <param.screenshot />
+    <param.guid />
+    <param.installpath.string>/Weizmann_Institute_of_Science/main_5R/</param.installpath.string>
+    <param.installpath.combo>option.installpath.user</param.installpath.combo>
+    <param.logo>${PROJECT_ROOT}/logo.png</param.logo>
+    <param.install.notes />
+    <param.target.install.notes>In the following directions, replace MR/v95 by the directory on the target machine where MATLAB is installed, or MR by the directory where the MATLAB Runtime is installed.
+
+(1) Set the environment variable XAPPLRESDIR to this value:
+
+MR/v95/X11/app-defaults
+
+
+(2) If the environment variable LD_LIBRARY_PATH is undefined, set it to the following:
+
+MR/v95/runtime/glnxa64:MR/v95/bin/glnxa64:MR/v95/sys/os/glnxa64:MR/v95/sys/opengl/lib/glnxa64
+
+If it is defined, set it to the following:
+
+${LD_LIBRARY_PATH}:MR/v95/runtime/glnxa64:MR/v95/bin/glnxa64:MR/v95/sys/os/glnxa64:MR/v95/sys/opengl/lib/glnxa64</param.target.install.notes>
+    <param.intermediate>${PROJECT_ROOT}/5R/for_testing</param.intermediate>
+    <param.files.only>${PROJECT_ROOT}/5R/for_redistribution_files_only</param.files.only>
+    <param.output>${PROJECT_ROOT}/5R/for_redistribution</param.output>
+    <param.logdir>${PROJECT_ROOT}/5R</param.logdir>
+    <param.enable.clean.build>false</param.enable.clean.build>
+    <param.user.defined.mcr.options />
+    <param.target.type>subtarget.standalone</param.target.type>
+    <param.support.packages />
+    <param.web.mcr>true</param.web.mcr>
+    <param.package.mcr>false</param.package.mcr>
+    <param.no.mcr>false</param.no.mcr>
+    <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
+    <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
+    <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
+    <param.windows.command.prompt>false</param.windows.command.prompt>
+    <param.create.log>false</param.create.log>
+    <param.log.file />
+    <param.native.matlab>false</param.native.matlab>
+    <param.checkbox>false</param.checkbox>
+    <param.example />
+    <param.help.text />
+    <unset>
+      <param.icon />
+      <param.icons />
+      <param.version />
+      <param.email />
+      <param.description />
+      <param.screenshot />
+      <param.guid />
+      <param.installpath.string />
+      <param.installpath.combo />
+      <param.install.notes />
+      <param.intermediate />
+      <param.files.only />
+      <param.output />
+      <param.logdir />
+      <param.enable.clean.build />
+      <param.user.defined.mcr.options />
+      <param.target.type />
+      <param.support.packages />
+      <param.web.mcr />
+      <param.package.mcr />
+      <param.no.mcr />
+      <param.web.mcr.name />
+      <param.package.mcr.name />
+      <param.no.mcr.name />
+      <param.windows.command.prompt />
+      <param.create.log />
+      <param.log.file />
+      <param.native.matlab />
+      <param.checkbox />
+      <param.example />
+      <param.help.text />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}/main_5R.m</file>
+    </fileset.main>
+    <fileset.resources />
+    <fileset.package />
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}/ReadsStats.m</file>
+      <file>${PROJECT_ROOT}/build_A_matrices.m</file>
+      <file>${PROJECT_ROOT}/build_scott_list_new.m</file>
+      <file>${PROJECT_ROOT}/datahash.m</file>
+      <file>${PROJECT_ROOT}/extract_sample_name.m</file>
+      <file>${PROJECT_ROOT}/get_configs.m</file>
+      <file>${PROJECT_ROOT}/load_bact_DB.m</file>
+      <file>${PROJECT_ROOT}/main_multiple_regions.m</file>
+      <file>${PROJECT_ROOT}/ml_em_iterative.m</file>
+      <file>${PROJECT_ROOT}/read_fastq_save_unireads.m</file>
+      <file>${PROJECT_ROOT}/read_unireads_save_split_to_regions.m</file>
+      <file>${PROJECT_ROOT}/reconstruction_func.m</file>
+      <file>${PROJECT_ROOT}/saveCellFile.m</file>
+      <file>${PROJECT_ROOT}/save_reconstruction_new_nogroups.m</file>
+      <file>${PROJECT_ROOT}/scott_format_newer_func.m</file>
+      <file>${PROJECT_ROOT}/solve_iterative_noisy.m</file>
+      <file>${PROJECT_ROOT}/split_files2directories.m</file>
+      <file>${PROJECT_ROOT}/unambiguit_one_seq.m</file>
+    </fileset.depfun>
+    <build-deliverables>
+      <file location="${PROJECT_ROOT}/5R/for_testing" name="splash.png" optional="false">/ph2users/fefuks/PhD/BACTERIA/MethodsPaper/5R Code/5R/for_testing/splash.png</file>
+      <file location="${PROJECT_ROOT}/5R/for_testing" name="run_main_5R.sh" optional="false">/ph2users/fefuks/PhD/BACTERIA/MethodsPaper/5R Code/5R/for_testing/run_main_5R.sh</file>
+      <file location="${PROJECT_ROOT}/5R/for_testing" name="main_5R" optional="false">/ph2users/fefuks/PhD/BACTERIA/MethodsPaper/5R Code/5R/for_testing/main_5R</file>
+      <file location="${PROJECT_ROOT}/5R/for_testing" name="readme.txt" optional="true">/ph2users/fefuks/PhD/BACTERIA/MethodsPaper/5R Code/5R/for_testing/readme.txt</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>/usr/local/MATLAB/R2018b</root>
+      <toolboxes>
+        <toolbox name="matlabcoder" />
+        <toolbox name="embeddedcoder" />
+        <toolbox name="gpucoder" />
+        <toolbox name="fixedpoint" />
+        <toolbox name="matlabhdlcoder" />
+        <toolbox name="neuralnetwork" />
+      </toolboxes>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+      <toolbox>
+        <embeddedcoder>
+          <enabled>true</enabled>
+        </embeddedcoder>
+      </toolbox>
+      <toolbox>
+        <gpucoder>
+          <enabled>true</enabled>
+        </gpucoder>
+      </toolbox>
+      <toolbox>
+        <fixedpoint>
+          <enabled>true</enabled>
+        </fixedpoint>
+      </toolbox>
+      <toolbox>
+        <matlabhdlcoder>
+          <enabled>true</enabled>
+        </matlabhdlcoder>
+      </toolbox>
+      <toolbox>
+        <neuralnetwork>
+          <enabled>true</enabled>
+        </neuralnetwork>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>true</unix>
+      <mac>false</mac>
+      <windows>false</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>true</linux>
+      <solaris>false</solaris>
+      <osver>4.15.0-60-generic</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>glnxa64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
