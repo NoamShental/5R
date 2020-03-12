@@ -1,7 +1,6 @@
 5R software package![GitHub Logo](logo.png)
 ========================
-**5R package** – A software package accompanying a novel method of
-bacterial 16S rRNA profiling based on the 5R protocol.
+**5R package** – A software package accompanying a novel method of bacterial 16S rRNA profiling based on the 5R protocol. Five short regions along the 16S rRNA are amplified in multiplex and subsequently sequenced by an Illumina machine. Resulting reads from these regions are combined into a coherent solution using our Short MUltiple Regions Framework (SMURF) algorithm (Fuks et al. 2018).
 
 Two options are provided: A Matlab code and a standalone executable version for Linux.
 The input to either methods is the same, and hence described below for the Matlab version followed by a short description of the standalone syntax.
@@ -19,7 +18,7 @@ main_5R(illumina_files_dir,db_dir, results_filename,kmer_len)
 
 where the inputs are:
 
-**illumina_files_dir** – a path to directory of fastq paired-end sequencing files. The package supports two cases: (i) the fastq files  corresponding to each sample are in a different sub-directory or (ii) fastq of different samples are mixed together in one folder. In the latter case the package will automatically split the files to folders per sample based on the the file name.
+**illumina_files_dir** – a path to directory of fastq paired-end sequencing files of samples profiled by the 5R primers. The package supports two cases: (i) the fastq files  corresponding to each sample are in a different sub-directory or (ii) fastq of different samples are mixed together in one folder. In the latter case the package will automatically split the files to folders per sample based on the the file name.
 
 **results_filename** - a full path to the results file name.
 
@@ -30,7 +29,7 @@ Output
 -------
 Two files are created:
 
-**results_filename.txt** - A table of species' abundances (rows) in each sample (columns).
+**results_filename.txt** - A table of species' relative abundances (rows) in each sample (columns).
 
 **ReadCountStats_results_filename.txt** - General statistics of the number reads that passed the quality filter, the number of reads matched to each regions etc.
 
@@ -75,4 +74,10 @@ Garold Fuks: garoldf@gmail.com
 Noam Shental: shental@openu.ac.il
 
 Ravid Straussman: ravidst@weizmann.ac.il
+
+
+
+## References
+
+Garold Fuks, Michael Elgart, Amnon Amir, Amit Zeisel, Peter J. Turnbaugh, Yoav Soen and Noam Shental. Combining 16S rRNA gene variable regions enables high-resolution microbial community profiling. *Microbiome*, 26;6(1):17, Jan 2018. doi: 10.1186/s40168-017-0396-x.
 
