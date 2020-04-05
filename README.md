@@ -81,3 +81,12 @@ Ravid Straussman: ravidst@weizmann.ac.il
 
 Garold Fuks, Michael Elgart, Amnon Amir, Amit Zeisel, Peter J. Turnbaugh, Yoav Soen and Noam Shental. Combining 16S rRNA gene variable regions enables high-resolution microbial community profiling. *Microbiome*, 26;6(1):17, Jan 2018. doi: 10.1186/s40168-017-0396-x.
 
+
+
+
+
+## How to cite?
+
+The 5R package can be referenced as 
+
+[DOI: 10.5281/zenodo.3740525](https://doi.org/10.5281/zenodo.3740525)
