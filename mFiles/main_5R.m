@@ -71,7 +71,7 @@ for dd = 3:length(directories)
         continue
     end
     
-    disp(['WORKING ON SAMPLE ' num2str(ss) ': ' directories(dd).name])
+    disp(['WORKING ON SAMPLE ' num2str(dd) ': ' directories(dd).name])
     SampleConfig = struct;
     SampleConfig.dname = [batch_dir '/' directories(dd).name];
     SampleConfig.primers_seq = primers_seq;

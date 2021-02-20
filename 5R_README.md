@@ -14,16 +14,24 @@ Usage
 -------
 Open Matlab, change to the mFiles directory and run the following line:
 
-main_5R(illumina_files_dir,db_dir, results_filename,kmer_len)
+main_5R(illumina_files_dir, db_dir, db_name, results_filename, kmer_len, generate_group_results)
 
 where the inputs are:
 
 **illumina_files_dir** – a path to directory of fastq paired-end sequencing files of samples profiled by the 5R primers. The package supports two cases: (i) the fastq files  corresponding to each sample are in a different sub-directory or (ii) fastq of different samples are mixed together in one folder. In the latter case the package will automatically split the files to folders per sample based on the the file name.
 
-**results_filename** - a full path to the results file name.
+**db_dir** - the path to the directory of data base kmers
+
+**db_name** - the name of the data base (the default data base of 5R is name is "GreenGenes_201305")
+
+**results_filename** - a full path to the results file name. Remark: Note that the directory in which results would be written must be created in advance.
 
 **kmer_len** - the length of the k-mer to be applied for reconstruction. The maximal supported length is 160nt. To support higher resolution the kmer length should be set as high as possible, yet depending on read quality. Since read qualify often deteriorate with the reads' length, we suggest the length over which the typical read quality falls below 30.
 If not specified, the a default of 100nt is set.
+
+**generate_group_results** - (this input parameter is optional) - this is a 0/1 indicator. When true, a folder named "groups" will be created inside the "resDir" folder for each sample and the full 16S sequences of all the reconstructed groups (i.e. amplicons) will be written to fasta files. A separate file will be created for each group containing all the sequences of the group.
+
+
 
 Output
 -------
@@ -53,16 +61,22 @@ https://ssd.mathworks.com/supportfiles/downloads/R2019b/Release/4/deployment_fil
 
 Following download double click on the installer and follow the instructions. This package is required for running standalone code compiled using Matlab.
 
+For instructions regarding the MCR installation see:
+
+https://www.mathworks.com/help/compiler/install-the-matlab-runtime.html
+
+
+
 
 To run the 5R code use the following syntax
 
-./5R_linux/run_main_5R.sh PATH_TO_RUNTIME illumina_files_dir db_dir  results_filename kmer_len
+./5R_linux/run_main_5R.sh PATH_TO_RUNTIME illumina_files_dir db_dir  db_name  results_filename <kmer_len>  <1>
 
 where PATH_TO_RUNTIME is the directory in which the MCR was installed (e.g. /opt/apps/matlab/Runtime/v97). Replace PATH_TO_RUNTIME by your directory.
 
 For example, the following syntax would work on the two above mentioned samples:
 
-./5R_linux/run_main_5R.sh PATH_TO_RUNTIME  ./example_fastq  ./GG_5R ./example_results/5R_SMURF_example.txt 126
+./5R_linux/run_main_5R.sh PATH_TO_RUNTIME  ./example_fastq  ./GG_5R GreenGenes_201305 ./example_results/5R_SMURF_example.txt 126
 
 
 Contact us
@@ -81,12 +95,3 @@ Ravid Straussman: ravidst@weizmann.ac.il
 
 Garold Fuks, Michael Elgart, Amnon Amir, Amit Zeisel, Peter J. Turnbaugh, Yoav Soen and Noam Shental. Combining 16S rRNA gene variable regions enables high-resolution microbial community profiling. *Microbiome*, 26;6(1):17, Jan 2018. doi: 10.1186/s40168-017-0396-x.
 
-
-
-
-
-## How to cite?
-
-The 5R package can be referenced as 
-
-[DOI: 10.5281/zenodo.3740525](https://doi.org/10.5281/zenodo.3740525)
