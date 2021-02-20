@@ -1,4 +1,4 @@
-function scott_format_newer_func(batch_directories_list,results_filename)
+function scott_format_newer_func(batch_directories_list, results_filename, generate_group_results)
 
 sl_ind = find(results_filename=='/',1,'last');
 
@@ -11,7 +11,7 @@ nStats = 3;
 nRegStats = 5;
 
 min_freq = 0;
-cut_freq_th = 1.1; % 14.12.2017 - to support the three types of report type together
+cut_freq_th = 1.1; 
 
 
 nS = length(batch_directories_list);
@@ -25,7 +25,12 @@ samples_names = cell(1,nS);
 % Build Scott list
 levels_list = {'domain','phylum','class','order','family','genus','species','groups'};
 % scott_levels_2save = {'domain','phylum','class','order','family','genus','species','groups'};
-scott_levels_2save = {'species'};
+if generate_group_results == 0
+    scott_levels_2save = {'species'};
+else
+    scott_levels_2save = {'species','groups'};
+end
+
 for sct = 1:length(scott_levels_2save)
     disp(['Building the Scott files for level: ' scott_levels_2save{sct}])
     [TF,tl] = ismember(scott_levels_2save{sct},levels_list);
@@ -82,10 +87,7 @@ for sct = 1:length(scott_levels_2save)
         group_freq(remove_ind) = [];
         
         
-        % Keep only significant frequencies (those that sum to 99% of the frequency) (instead of what was done at reconstruction)
-        % Generate passed filter description  (for Ravid's request to report frequency of those that didn't pass the 0.99 filter in this sample but did pass in other samples
-        % 14.12.2017: Due to Ravid's request to report at each taxa level only those frequencies that are unambiguous
-        % 14.12.2017: and our desire to keep also the option of soft assignment we need to turn this filter off
+        % Keep only significant frequencies (those that sum to "cut_freq_th" of the frequency) (instead of what was done at reconstruction)
         [sorted_freq,If] = sort(group_freq,'descend');
         cut_ind = find(cumsum(sorted_freq)>cut_freq_th,1);
         if isempty(cut_ind)
@@ -144,11 +146,10 @@ for sct = 1:length(scott_levels_2save)
     %     save(save_filename,'-v7.3','gr_in_scott_cell','new_compact_freq_mat','samples_names','rows_description','num_reads_per_sample','avg_num_in_scott_cell')
     
     
-    % Save to file frequencies    
+    % Save to file   
     if write_counts_flag == 0
         % Save to file frequencies
         new_compact_save_cell = [[{'Total # of reads'} cellfun(@(x) '',cell(1,tl-1),'UniformOutput',false) str_reads_per_sample];[levels_list(1:tl) samples_names];[rows_description num2cell(new_compact_freq_mat)]];
-        saveCellFile(new_compact_save_cell, results_filename)
     else
         % Save to file reads
         new_compact_count_mat = round(bsxfun(@times,new_compact_freq_mat,num_reads_per_sample));
@@ -163,13 +164,14 @@ for sct = 1:length(scott_levels_2save)
         else
             new_compact_save_cell = [[{'Total # of reads'} cellfun(@(x) '',cell(1,tl),'UniformOutput',false) str_reads_per_sample];[levels_list(1:tl) {'Count'} samples_names];[rows_description num2cell([sum(new_compact_count_mat,2) new_compact_count_mat])]];
         end
-        saveCellFile(new_compact_save_cell, results_filename)
     end
+    curr_level_results_filename = [results_filename(1:sl_ind) upper(scott_levels_2save{sct}) '_' results_filename(sl_ind+1:end)];
+    saveCellFile(new_compact_save_cell, curr_level_results_filename)
     
     % Save to file group sizes
     if print_resolution == 1
         new_compact_save_cell = [[{'Total # of reads'} cellfun(@(x) '',cell(1,tl-1),'UniformOutput',false) str_reads_per_sample];[levels_list(1:tl) samples_names];[rows_description num2cell(round(avg_num_in_scott_cell))]];
-        saveCellFile(new_compact_save_cell, [results_filename(1:sl_ind) 'GroupSizes_' results_filename(sl_ind+1:end)])
+        saveCellFile(new_compact_save_cell, [results_filename(1:sl_ind) 'GroupSizes_' upper(scott_levels_2save{sct}) '_' results_filename(sl_ind+1:end)])
     end
     
 end

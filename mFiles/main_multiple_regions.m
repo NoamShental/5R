@@ -1,5 +1,6 @@
-function main_multiple_regions(PrepConfig,AlgoConfig,SampleConfig,Header_uni,Sequence_uni,taxa_name_calls,ranks_to_extract)
+function [err_code] = main_multiple_regions(PrepConfig,AlgoConfig,SampleConfig,Header_uni,Sequence_uni,taxa_name_calls,ranks_to_extract)
 
+err_code = 0;
 
 % Configs processing
 sample_dir = SampleConfig.dname;
@@ -8,16 +9,18 @@ primers_seq = SampleConfig.primers_seq;
 
 % Get the sample name
 files = dir([sample_dir '/*fastq*']);
+if isempty(files) || 2*fix(length(files)/2) ~= length(files)
+    err_code = 1;
+    return
+end
 sample_name = extract_sample_name(files(1).name);
-
 
 % Clean the results directory
 resDir = [sample_dir '/resDir'];
-if ~exist(resDir,'dir')
-    mkdir(resDir)
-else
-    delete([resDir '/*'])
+if exist(resDir,'dir')
+    rmdir(resDir, 's')
 end
+mkdir(resDir)
 
 
 % Add primers handling params to AlgoConfig
@@ -67,9 +70,5 @@ save(matlab_filename, 'PrepConfig','AlgoConfig','SampleConfig')
 
 
 % Save the reconstruction
-if isempty(taxa_name_calls)
-    error('NO TAXA')
-else
-    save_reconstruction_new_nogroups(sample_dir, sample_name, taxa_name_calls, ranks_to_extract, Header_uni,Sequence_uni,AlgoConfig.write_groups_fasta)
-end    
+save_reconstruction_new_nogroups(sample_dir, sample_name, taxa_name_calls, ranks_to_extract, Header_uni,Sequence_uni,AlgoConfig.write_groups_fasta)
 

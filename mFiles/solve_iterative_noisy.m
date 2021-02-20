@@ -87,7 +87,7 @@ nB = length(keep_col);
 
 
 % Normalize frequency counts
-warning('TAKE PROPER CARE OF NOT AMPLIFIED REGIONS')
+% warning('TAKE PROPER CARE OF NOT AMPLIFIED REGIONS')
 if Config.verbose
     disp('Normalize frequency counts')
 end
