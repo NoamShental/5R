@@ -17,7 +17,7 @@ Suni = [];
 freq = [];
 
 
-% Dealing with compression due to data2 storage problems
+% Uncompress the fastq files 
 delete_fastq_files = 0;
 gz_names = dir([dname '/' sample_name '*.fastq.gz']);
 if ~isempty(gz_names)
@@ -26,6 +26,16 @@ if ~isempty(gz_names)
     end
     delete_fastq_files = 1;
 end
+
+zip_names = dir([dname '/' sample_name '*.fastq.zip']);
+if ~isempty(zip_names)
+    for zp = 1:length(zip_names)
+        unzip([dname '/' zip_names(zp).name], dname)
+    end
+    delete_fastq_files = 1;
+end
+
+% Get the list of fastq files 
 tmp_names = dir([dname '/' sample_name '*.fastq']);
 
 
