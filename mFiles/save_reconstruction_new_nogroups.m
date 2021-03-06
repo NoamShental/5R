@@ -6,7 +6,7 @@ load(matlab_filename, 'found_bacteria','bactMetaGroups')
 
 
 % **************** Build the RECONSTRUCTIONS file ************
-if isempty(taxa_name_calls)
+if 0 %isempty(taxa_name_calls)
     warning(['TAXA file was NOT FOUND. Not saving reconstruction file to disk for sample: ' sample_num])
 else
 

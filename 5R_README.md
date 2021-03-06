@@ -18,9 +18,9 @@ main_5R(illumina_files_dir, db_dir, db_name, results_filename, kmer_len, generat
 
 where the inputs are:
 
-**illumina_files_dir** – a path to directory of fastq paired-end sequencing files of samples profiled by the 5R primers. The package supports two cases: (i) the fastq files  corresponding to each sample are in a different sub-directory or (ii) fastq of different samples are mixed together in one folder. In the latter case the package will automatically split the files to folders per sample based on the the file name.
+**illumina_files_dir** – the **absolute full**  path to directory of fastq paired-end sequencing files of samples profiled by the 5R primers. The package supports two cases: (i) the fastq files  corresponding to each sample are in a different sub-directory or (ii) fastq of different samples are mixed together in one folder. In the latter case the package will automatically split the files to folders per sample based on the the file name.
 
-**db_dir** - the path to the directory of data base kmers
+**db_dir** - the  **absolute full** path to the directory of data base kmers
 
 **db_name** - the name of the data base (the default data base of 5R is name is "GreenGenes_201305")
 

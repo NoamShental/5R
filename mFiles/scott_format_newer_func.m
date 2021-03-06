@@ -1,4 +1,4 @@
-function scott_format_newer_func(batch_directories_list, results_filename, generate_group_results)
+function scott_format_newer_func(batch_directories_list, results_filename, scott_levels_2save)
 
 sl_ind = find(results_filename=='/',1,'last');
 
@@ -25,11 +25,6 @@ samples_names = cell(1,nS);
 % Build Scott list
 levels_list = {'domain','phylum','class','order','family','genus','species','groups'};
 % scott_levels_2save = {'domain','phylum','class','order','family','genus','species','groups'};
-if generate_group_results == 0
-    scott_levels_2save = {'species'};
-else
-    scott_levels_2save = {'species','groups'};
-end
 
 for sct = 1:length(scott_levels_2save)
     disp(['Building the Scott files for level: ' scott_levels_2save{sct}])
