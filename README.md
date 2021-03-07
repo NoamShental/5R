@@ -18,19 +18,25 @@ main_5R(illumina_files_dir, db_dir, db_name, results_filename, kmer_len, generat
 
 where the inputs are:
 
-**illumina_files_dir** – the **absolute full**  path to directory of fastq paired-end sequencing files of samples profiled by the 5R primers. The package supports two cases: (i) the fastq files  corresponding to each sample are in a different sub-directory or (ii) fastq of different samples are mixed together in one folder. In the latter case the package will automatically split the files to folders per sample based on the the file name.
+**illumina_files_dir** – a (**full**) path to directory of fastq paired-end sequencing files of samples profiled by the 5R primers. The package supports two cases: (i) the fastq files  corresponding to each sample are in a different sub-directory or (ii) fastq of different samples are mixed together in one folder. In the latter case the package will automatically split the files to folders per sample based on the the file name.
 
-**db_dir** - the  **absolute full** path to the directory of data base kmers
+**db_dir** - the (**full**) path to the directory of data base kmers
 
 **db_name** - the name of the data base (the default data base of 5R is name is "GreenGenes_201305")
 
-**results_filename** - a full path to the results file name. Remark: Note that the directory in which results would be written must be created in advance.
+**results_filename** - a **full** path to the results file name. Remark: Note that the directory in which results would be written must be created in advance.
 
 **kmer_len** - the length of the k-mer to be applied for reconstruction. The maximal supported length is 160nt. To support higher resolution the kmer length should be set as high as possible, yet depending on read quality. Since read qualify often deteriorate with the reads' length, we suggest the length over which the typical read quality falls below 30.
 If not specified, the a default of 100nt is set.
 
 **generate_group_results** - (this input parameter is optional) - this is a 0/1 indicator. When true, a folder named "groups" will be created inside the "resDir" folder for each sample and the full 16S sequences of all the reconstructed groups (i.e. amplicons) will be written to fasta files. A separate file will be created for each group containing all the sequences of the group.
 
+
+
+Taxonomy
+-------
+
+The taxonomy file named **taxonomy_db.mat** should be found in the **db_dir** along the data base file per region. If the file is not found, the reconstruction file will be created per group (instead of per species) with empty taxonomy.
 
 
 Output
