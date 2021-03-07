@@ -33,6 +33,12 @@ If not specified, the a default of 100nt is set.
 
 
 
+Taxonomy
+-------
+
+The taxonomy file named **taxonomy_db.mat** should be found in the **db_dir** along the data base file per region. If the file is not found, the reconstruction file will be created per group (instead of per species) with empty taxonomy.
+
+
 Output
 -------
 Two files are created:

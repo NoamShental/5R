@@ -58,9 +58,17 @@ end
 taxaS16_file = [DbFiles.uniS16_dir '/' DbFiles.rdp_name_calls_file];
 if ~exist('taxa_name_calls','var') && exist(taxaS16_file,'file')
     load(taxaS16_file,'taxa_name_calls','ranks_to_extract')
+    if AlgoConfig.write_groups_fasta == 0
+        scott_levels_2save = {'species'};
+    else
+        scott_levels_2save = {'species','groups'};
+    end
+    
 else
-    taxa_name_calls = {};
-    ranks_to_extract = {};
+    ranks_to_extract = {'domain', 'phylum', 'class', 'order', 'family', 'genus', 'species'};
+    taxa_name_calls = cell(length(Header_uni), length(ranks_to_extract));
+    [taxa_name_calls{:}] = deal('');
+    scott_levels_2save = {'groups'};
 end
 
 % ***************************  RECONSTRUCT SAMPLES  ***********************
@@ -86,5 +94,5 @@ end
 
 % Save the reconstructions file
 if ~isempty(taxa_name_calls)
-    scott_format_newer_func(batch_samples_list,results_filename, AlgoConfig.write_groups_fasta)
+    scott_format_newer_func(batch_samples_list,results_filename, scott_levels_2save)
 end
