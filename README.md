@@ -24,7 +24,7 @@ where the inputs are:
 
 **db_name** - the name of the data base (the default data base of 5R is name is "GreenGenes_201305")
 
-**results_filename** - a full path to the results file name. Remark: Note that the directory in which results would be written must be created in advance.
+**results_filename** - a **full** path to the results file name. Remark: Note that the directory in which results would be written must be created in advance.
 
 **kmer_len** - the length of the k-mer to be applied for reconstruction. The maximal supported length is 160nt. To support higher resolution the kmer length should be set as high as possible, yet depending on read quality. Since read qualify often deteriorate with the reads' length, we suggest the length over which the typical read quality falls below 30.
 If not specified, the a default of 100nt is set.
@@ -38,9 +38,9 @@ Taxonomy
 
 The taxonomy file named **taxonomy_db.mat** should be found in the **db_dir** along the data base file per region. If the file is not found, the reconstruction file will be created per group (instead of per species) with empty taxonomy.
 
+
 Output
 -------
-
 Two files are created:
 
 **results_filename.txt** - A table of species' relative abundances (rows) in each sample (columns).
