@@ -59,7 +59,7 @@ if write_groups_fasta
     % Write the sequences fasta (group by group)
     if ~isempty(bactMetaGroups)
         for ii = 1:length(bactMetaGroups)
-            fasta_filename = [readsPath '/resDir/groups/sample_' sample_num '_group' num2str(ii) '.fasta'];
+            fasta_filename = [readsPath '/resDir/groups/sample_' sample_num '_group' num2str(ii) '_' num2str(datahash(Groups(ii).hash{L})) '.fasta'];
             fastawrite(fasta_filename, cellfun(@num2str,Header_uni(bactMetaGroups(ii).db_ind),'UniformOutput',false),Sequence_uni(bactMetaGroups(ii).db_ind))
         end
     end
